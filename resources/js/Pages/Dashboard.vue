@@ -39,7 +39,7 @@ const form = useForm({
         </div>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-gray-300 overflow-hidden shadow-sm sm:rounded-lg rounded-lg mx-3">
+                <div class="bg-gray-200 overflow-hidden shadow-lg sm:rounded-lg rounded-lg mx-3">
                     <ItemCard v-for="expense in props.expenses" :key="expense.id" :expense="expense" />
                 </div>
             </div>

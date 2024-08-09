@@ -17,7 +17,22 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()
+                ->unique()
+                ->randomElement([
+                    'Banamex',
+                    'BBVA',
+                    'Santander',
+                    'HSBC',
+                    'IXE',
+                    'Inbursa',
+                    'Mifel',
+                    'Afirme',
+                    'American Express',
+                    'Banorte',
+                    'ScotiaBank',
+                    'Liverpool',
+                ]),
         ];
     }
 }

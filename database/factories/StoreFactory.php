@@ -17,7 +17,23 @@ class StoreFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()
+                ->unique()
+                ->randomElement([
+                    'Liverpool',
+                    'Sears',
+                    'Chedraui',
+                    'Walmart',
+                    'Banana Republic',
+                    'Costco',
+                    "Sam's",
+                    'Whoolworth',
+                    'Coppel',
+                    'Tienda de abarrotes',
+                    'Sanborns',
+                    'Suburbia',
+                    'Palacio de hierro',
+                ]),
         ];
     }
 }

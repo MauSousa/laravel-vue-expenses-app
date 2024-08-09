@@ -1,11 +1,22 @@
+<script setup>
+import dayjs from "dayjs";
+defineProps(["expense"]);
+</script>
+
 <template>
     <div class="lg:text-base text-sm">
-        <h2 class="pl-6 pt-4 mb-5">Liverpool</h2>
+        <h2 class="pl-6 pt-4 mb-5">{{ expense.payment.name }}</h2>
         <div class="text-gray-900 flex justify-between px-3 items-center">
-            <p class="lg:pl-6">Compre dos pantalones</p>
-            <p class="pr-3">Liverpool</p>
-            <p class="pr-3">24/01/2024</p>
-            <p class="">$430 MXN</p>
+            <p class="lg:pl-6">{{ expense.message }}</p>
+            <p class="pr-3">{{ expense.store.name }}</p>
+            <p class="pr-3">
+                {{
+                    dayjs(new Date(expense.created_at).toLocaleString()).format(
+                        "DD/MM/YYYY",
+                    )
+                }}
+            </p>
+            <p class="">{{ expense.amount }} MXN</p>
             <a href="#" class="flex justify-center items-center lg:px-6 lg:mr-3" title="Descargar pdf">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-type-pdf" width="40"
                     height="40" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round"
@@ -20,6 +31,6 @@
                 </svg>
             </a>
         </div>
-        <hr class="m-5" />
+        <hr class="m-5 border-black" />
     </div>
 </template>

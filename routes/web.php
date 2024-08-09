@@ -19,12 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-
     // TODO: Keep looking for pagination
 
     $today = Carbon::now()->format('Y-m-d');
-    // dd(Expense::with(['payment', 'store'])->where('user_id', Auth::user()->id)->where('created_at', 'LIKE', "%{$today}%")->latest()->get());
-
     return Inertia::render('Dashboard', [
         'expenses' => Expense::with(['payment', 'store'])->where('user_id', Auth::user()->id)->where('created_at', 'LIKE', "%{$today}%")->latest()->get(),
         'today' => $today
@@ -36,7 +33,6 @@ Route::post('/dashboard', [ExpenseController::class, 'filter_date'])
     ->name('expenses.filter_date');
 Route::resource('/expenses', ExpenseController::class)
     ->middleware(['auth', 'verified']);
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

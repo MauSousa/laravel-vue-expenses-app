@@ -32,7 +32,7 @@ const form = useForm({
                         onSuccess: () => form.today,
                     })
                     ">
-                    <input type="date" class="rounded-lg" v-model="form.today" name="today" />
+                    <input type="date" class="rounded-lg border border-transparent" v-model="form.today" name="today" />
                 </form>
             </div>
             <NavLink :href="route('expenses.create')"> Add expense </NavLink>

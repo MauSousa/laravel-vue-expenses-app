@@ -1,6 +1,13 @@
 <script setup>
+import { usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
 import dayjs from "dayjs";
+
 defineProps(["expense"]);
+
+const page = usePage();
+
+const user = computed(() => page.props.auth.user);
 </script>
 
 <template>
@@ -12,12 +19,12 @@ defineProps(["expense"]);
             <p class="pr-3">
                 {{
                     dayjs(new Date(expense.created_at).toLocaleString()).format(
-                        "DD/MM/YYYY",
+                        "MM/DD/YYYY",
                     )
                 }}
             </p>
             <p class="">{{ expense.amount }} MXN</p>
-            <a href="#" class="flex justify-center items-center lg:px-6 lg:mr-3" title="Descargar pdf">
+            <a :href="'/pdf/' + user.id + '/' + expense.id" class="rounded-lg bg-gray-200 px-4 py-1" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-type-pdf" width="40"
                     height="40" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round"
                     stroke-linejoin="round">

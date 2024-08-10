@@ -37,6 +37,8 @@ Route::resource('/expenses', ExpenseController::class)
     ->middleware(['auth', 'verified']);
 
 Route::get('/pdf/{user}/{expense}', [PdfController::class, 'stream'])
+    ->where('id', '[0-9]+')
+    ->where('expense', '[0-9]+')
     ->middleware(['auth', 'verified'])
     ->name('pdf.index');
 

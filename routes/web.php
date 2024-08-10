@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ExpenseController;
 use App\Models\Expense;
 use Carbon\Carbon;
@@ -31,8 +32,13 @@ Route::get('/dashboard', function () {
 Route::post('/dashboard', [ExpenseController::class, 'filter_date'])
     ->middleware(['auth', 'verified'])
     ->name('expenses.filter_date');
+
 Route::resource('/expenses', ExpenseController::class)
     ->middleware(['auth', 'verified']);
+
+Route::get('/pdf/{user}/{expense}', [PdfController::class, 'stream'])
+    ->middleware(['auth', 'verified'])
+    ->name('pdf.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -14,7 +14,7 @@ const user = computed(() => page.props.auth.user);
     <div class="lg:text-base text-sm">
         <h2 class="pl-6 pt-4 mb-5">{{ expense.payment.name }}</h2>
         <div class="text-gray-900 flex justify-between px-3 items-center">
-            <p class="lg:pl-6">{{ expense.message }}</p>
+            <p class="lg:pl-6 whitespace-pre-line">{{ expense.message }}</p>
             <p class="pr-3">{{ expense.store.name }}</p>
             <p class="pr-3">
                 {{

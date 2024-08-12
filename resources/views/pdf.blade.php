@@ -44,7 +44,7 @@
                 <td>
                     {{ $data['payment'] }}
                 </td>
-                <td>
+                <td class="list-item">
                     {{ $data['message'] }}
                 </td>
                 <td>
@@ -112,7 +112,7 @@
         }
 
         table tr.items td {
-            padding: 0.5rem;
+            padding-bottom: 0.7rem;
             text-align: center;
         }
 
@@ -120,6 +120,10 @@
             text-align: right;
             margin-top: 1rem;
             font-size: 0.875rem;
+        }
+
+        .list-item {
+            white-space: pre-line;
         }
     </style>
 </body>

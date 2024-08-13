@@ -39,7 +39,7 @@ defineProps(["payments", "stores"]);
                             {{ payment.name }}
                         </option>
                     </select>
-                    <InputError :message="form.errors.bankName" class="mt-2" />
+                    <InputError :message="form.errors.payment_id" class="mt-2" />
                 </div>
 
                 <div>
@@ -58,7 +58,7 @@ defineProps(["payments", "stores"]);
                             {{ store.name }}
                         </option>
                     </select>
-                    <InputError :message="form.errors.storeName" class="mt-2" />
+                    <InputError :message="form.errors.store_id" class="mt-2" />
                 </div>
 
                 <div>

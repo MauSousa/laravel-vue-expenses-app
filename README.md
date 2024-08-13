@@ -21,7 +21,3 @@ Simple and minimal expenses track app made with love, Laravel and InertiaJs with
 #### Showing different date
 
 ![Image_5](https://github.com/user-attachments/assets/2e2081e5-bbbf-473c-a001-53d447f9a637)
-
-## TODO
-
--   Generate PDF for all expenses of the month

@@ -34,8 +34,14 @@ Route::get('/dashboard', function () {
 Route::resource('/expenses', ExpenseController::class)
     ->middleware(['auth', 'verified']);
 
+Route::get('/pdf/{user}', [PdfController::class, 'monthlyExpenses'])
+    ->where('user', '[0-9]+')
+    ->where('mont', '[0-9]+')
+    ->middleware(['auth', 'verified'])
+    ->name('pdf.month');
+
 Route::get('/pdf/{user}/{expense}', [PdfController::class, 'stream'])
-    ->where('id', '[0-9]+')
+    ->where('user', '[0-9]+')
     ->where('expense', '[0-9]+')
     ->middleware(['auth', 'verified'])
     ->name('pdf.index');

@@ -28,10 +28,46 @@ class PdfController extends Controller
             'date' => $date->format('m-d-Y'),
         ];
 
-        // dd($data);
-
         $pdf = Pdf::loadView('pdf', ['data' => $data]);
 
         return $pdf->stream('expenses-' . $expense->id);
+    }
+
+    public function monthlyExpenses(Request $request, User $user)
+    {
+        if (Auth::user()->id !== $user->id) {
+            return redirect()->back();
+        }
+
+        // dd($request->query('month'));
+        $date = $request->query('month');
+        $data = Expense::with(['payment', 'store'])
+            ->where('user_id', Auth::user()
+                ->id)->where('created_at', 'LIKE', "%-{$date}-%")->latest()->get();
+
+        // dd($data);
+        $pdf = Pdf::loadView('monthly', ['data' => $data, 'email' => $user->email, 'date' => $this->parseMonth($date) ]);
+
+        return $pdf->stream('expenses-' . $date);
+    }
+
+    private function parseMonth(string $month)
+    {
+        $numberMonth = [
+            '01' => 'January',
+            '02' => 'February',
+            '03' => 'March',
+            '04' => 'April',
+            '05' => 'May',
+            '06' => 'June',
+            '07' => 'July',
+            '08' => 'August',
+            '09' => 'September',
+            '10' => 'October',
+            '11' => 'November',
+            '12' => 'December',
+        ];
+
+        return $numberMonth[$month];
     }
 }

@@ -42,22 +42,9 @@ class ExpenseController extends Controller
             'amount' => ['required', 'string', 'max:255'],
         ]);
 
-        // dd($request->all());
         $request->user()->expenses()->create($validated);
 
         return redirect(route('dashboard'));
-    }
-
-
-    /**
-     * Display the resources filtered by specific date.
-     */
-    public function filter_date(Request $request)
-    {
-        $today = $request->today;
-        return Inertia::render('Dashboard', [
-            'expenses' => Expense::with(['payment', 'store'])->where('user_id', Auth::user()->id)->where('created_at', 'LIKE', "%{$today}%")->latest()->get(),
-        ]);
     }
 
     /**

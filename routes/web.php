@@ -20,18 +20,16 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    // TODO: Keep looking for pagination
+    $today = request()->query('date') ?? Carbon::now()->format('Y-m-d');
 
-    $today = Carbon::now()->format('Y-m-d');
     return Inertia::render('Dashboard', [
-        'expenses' => Expense::with(['payment', 'store'])->where('user_id', Auth::user()->id)->where('created_at', 'LIKE', "%{$today}%")->latest()->get(),
-        'today' => $today
+        'date' => $today,
+        'expenses' => Expense::with(['payment', 'store'])
+            ->where('user_id', Auth::user()
+                ->id)->where('created_at', 'LIKE', "%{$today}%")
+            ->latest()->paginate(3)->withQueryString()
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::post('/dashboard', [ExpenseController::class, 'filter_date'])
-    ->middleware(['auth', 'verified'])
-    ->name('expenses.filter_date');
 
 Route::resource('/expenses', ExpenseController::class)
     ->middleware(['auth', 'verified']);

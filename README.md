@@ -21,3 +21,8 @@ Simple and minimal expenses track app made with love, Laravel and InertiaJs with
 #### Showing different date
 
 ![Image_5](https://github.com/user-attachments/assets/2e2081e5-bbbf-473c-a001-53d447f9a637)
+
+#### Pagination when you have more than three expenses
+
+![Image_6](https://github.com/user-attachments/assets/00d4a3a0-5cc8-44b3-8631-929a27a69be8)
+
